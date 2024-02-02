@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuking.pairBackend.mapper.TagMapper">
+
+    <resultMap id="BaseResultMap" type="com.shuking.pairBackend.domain.Tag">
+            <id property="tag_id" column="tag_id" jdbcType="VARCHAR"/>
+            <result property="tag_name" column="tag_name" jdbcType="VARCHAR"/>
+            <result property="user_id" column="user_id" jdbcType="VARCHAR"/>
+            <result property="parent_id" column="parent_id" jdbcType="VARCHAR"/>
+            <result property="is_parent" column="is_parent" jdbcType="TINYINT"/>
+            <result property="is_deleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        tag_id,tag_name,user_id,
+        parent_id,is_parent,is_deleted,
+        update_time,create_time
+    </sql>
+</mapper>

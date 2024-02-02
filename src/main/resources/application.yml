@@ -1,0 +1,70 @@
+#数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/pair_system?allowMultiQueries=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&&rewriteBatchedStatements=true
+    password: 654160
+  session:
+    timeout: 86400
+  data:
+    redis:
+      #       redis单机配置
+      #      从0-15号数据库中进行选择
+      database: 0
+      host: 192.168.234.128
+      port: 6379
+      password: 654160
+      #      redis连接池
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 4
+          max-wait: -1
+      #        定时刷新对集群节点的监控
+      #        cluster:
+      #          refresh:
+      #            adaptive: true
+      #            period: 2000
+      #      集群配置
+#      cluster:
+#        nodes: 192.168.234.128:6379,192.168.234.128:6380,192.168.234.128:6381,192.168.234.128:6382
+#        max-redirects: 3
+#mybatis配置
+mybatis-plus:
+  #  xml文件扫描路径
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    #    日志类别
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+    #    !!!开启驼峰映射 将数据库下划线字段映射为java驼峰属性
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      #      逻辑删除的字段名
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+#log4j2日志配置
+logging:
+  #  配置文件路徑
+  config: classpath:log4j2-spring.xml
+
+# knife4j的增强配置，不需要增强可以不配
+#访问地址 doc.html
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+server:
+  #  一定要是servlet！
+  servlet:
+    session:
+      cookie:
+        #        允许js访问
+        http-only: false
+        #        默认浏览器关闭时删除cookie
+        max-age: -1
